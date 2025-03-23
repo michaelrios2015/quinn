@@ -148,10 +148,30 @@ westchester = pd.read_excel("Westchester.xlsx")
 
 # qdOnly.to_csv("qdOnly.csv", index=False)
 
+import re
+
+
+def callN(alist):
+    for element in alist:
+        if (element * 1).isdigit():
+            return element
+
+
 qdOnly = pd.read_csv("qdOnly.csv")
+# probbaly best to just remove the dvd part, then split then take first thing in list
+
+qdOnly["callNum2"] = qdOnly["callNumber"].apply(lambda x: x[6:])
+
+qdOnly["callNum2"] = qdOnly["callNum2"].apply(lambda x: x.split(" "))
+
+qdOnly["callNum2"] = qdOnly["callNum2"].apply(lambda x: x[0] if len(x) > 0 else x)
 
 
-qdOnly["callNum2"] = qdOnly["callNumber"].apply(lambda x: x[5:])
+qdOnly["callNum2"] = qdOnly["callNum2"].apply(
+    lambda x: "".join(c for c in x if c.isdigit())
+)
+
+
 print(qdOnly)
 
 qdOnly.to_csv("qdOnly.csv", index=False)
