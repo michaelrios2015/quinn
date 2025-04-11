@@ -12,7 +12,6 @@ final = pd.merge(
 
 check = final[final["_merge"] != "left_only"]
 
-final = final[final["_merge"] == "left_only"]
 
 # print(final)
 
