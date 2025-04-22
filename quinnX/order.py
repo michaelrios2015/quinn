@@ -76,21 +76,32 @@ import pandas as pd
 # qdOnly.to_csv("quinnX/qxdupes.csv", index=False)
 # print(qdOnly)
 
+
 import math 
+
+# all = pd.read_csv('quinnX\output.csv')
+
+# # print(all['dateLastUsed'])
+
+# all_used = all.loc[all['dateLastUsed'].notnull()]
+
+
+
+# all_used['dateLastUsed'] = pd.to_datetime(all_used['dateLastUsed'], format='%Y-%m-%d')
+
+# # print(all_used['dateLastUsed'].dtype)
+
+# all_used_co = all_used.loc[(all_used['totalCheckouts'] > 0) & (all_used['dateLastUsed'] > pd.to_datetime("2015-01-01"))]
+
+
+# print(all_used_co[['totalCheckouts', 'dateLastUsed']])
 
 all = pd.read_csv('quinnX\output.csv')
 
-# print(all['dateLastUsed'])
+all = all[all['marcEntry'].str.contains('for dummies')]
 
-all_used = all.loc[all['dateLastUsed'].notnull()]
+print(all.iloc[0])
 
+print(all)
 
-
-all_used['dateLastUsed'] = pd.to_datetime(all_used['dateLastUsed'], format='%Y-%m-%d')
-
-# print(all_used['dateLastUsed'].dtype)
-
-all_used_co = all_used.loc[(all_used['totalCheckouts'] > 0) & (all_used['dateLastUsed'] > pd.to_datetime("2015-01-01"))]
-
-
-print(all_used_co[['totalCheckouts', 'dateLastUsed']])
+# all.to_csv("quinnX\dummies.csv", index = 'false')
