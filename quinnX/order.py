@@ -96,12 +96,44 @@ import math
 
 # print(all_used_co[['totalCheckouts', 'dateLastUsed']])
 
-all = pd.read_csv('quinnX\output.csv')
+# all = pd.read_csv('quinnX\output.csv')
 
-all = all[all['marcEntry'].str.contains('for dummies')]
+# all = all[all['marcEntry'].str.contains('for dummies')]
 
-print(all.iloc[0])
+# print(all.iloc[0])
 
-print(all)
+# print(all)
 
 # all.to_csv("quinnX\dummies.csv", index = 'false')
+
+# all = pd.read_excel('quinnX/unique_quinnX.xlsx')
+
+
+# all = all.loc[all['Date last charged'] > 0]
+# print(all)
+
+# all['Date last charged'] = pd.to_datetime(all['Date last charged'], format='%Y%m%d')
+
+# # search_values = ['A','B','C','D','E','F','G','J','P','R','S','T','U','V','Z' ]
+
+# search_values = ['H','K','L','N','M','Q']
+
+# all = all.loc[(all['Call #'].str.startswith(tuple(search_values)) & (all['Date last charged'] > pd.to_datetime("2015-01-01")))]
+
+# print(all)
+
+all = pd.read_csv('quinnX/qxdupes.csv')
+
+
+all = all.loc[all['dateLastUsed'].notnull()]
+print(all)
+
+all['dateLastUsed'] = pd.to_datetime(all['dateLastUsed'], format='%Y-%m-%d')
+
+# search_values = ['A','B','C','D','E','F','G','J','P','R','S','T','U','V','Z' ]
+
+# search_values = ['H','K','L','N','M','Q']
+
+all = all.loc[(all['totalCheckouts'] > 0) & (all['dateLastUsed'] > pd.to_datetime("2015-01-01"))]
+
+print(all)
